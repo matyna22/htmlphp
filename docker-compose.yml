@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: .
+    ports:
+      - "80:80"
+    volumes:
+      - .:/usr/share/nginx/html
+  terminal:
+    image: ubuntu
+    command: tail -f /dev/null
+    depends_on:
+      - web
+    volumes:
+      - .:/usr/share/nginx/html
+    stdin_open: true
+    tty: true
